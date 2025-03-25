@@ -4,7 +4,6 @@ import org.example.logic.Enemy;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.ImageObserver;
 
 public class GameGraphics extends JFrame {
     GameLogic logic;
@@ -34,11 +33,12 @@ public class GameGraphics extends JFrame {
     private class Draw extends JPanel {
         @Override
         protected void paintComponent(Graphics g) {
-            g.drawImage(logic.background.image, logic.background.coord.x, logic.background.coord.y, null);
-            g.drawImage(logic.ball.image, logic.ball.coord.x, logic.ball.coord.y, null);
+            g.setColor(logic.ball.color);
+            g.fillOval(logic.ball.coord.x, logic.ball.coord.y, logic.ball.width, logic.ball.height);
 
             for (Enemy enemy: logic.enemies){
-                g.drawImage(enemy.image, enemy.coord.x, enemy.coord.y, null);
+                g.setColor(enemy.color);
+                g.fillRect(enemy.coord.x, enemy.coord.y, enemy.width, enemy.height);
             }
         }
     }
